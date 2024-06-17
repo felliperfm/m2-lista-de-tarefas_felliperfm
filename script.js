@@ -11,13 +11,13 @@ const tasks = [
   { title: "Assistir a um documentário interessante", type: "Normal" },
 ];
 
-function createTaskItem(title, type) {
+function createTaskItem(task) {
   let spanType;
-  if (type.toLowerCase() == "urgente") {
+  if (task.type.toLowerCase() == "urgente") {
     spanType = "span-urgent"
-  } else if (type.toLowerCase() == "importante") {
+  } else if (task.type.toLowerCase() == "importante") {
     spanType = "span-important"
-  } else if (type.toLowerCase() == "normal") {
+  } else if (task.type.toLowerCase() == "normal") {
     spanType = "span-normal"
   };
   const listItem = document.createElement("li");
@@ -30,7 +30,7 @@ function createTaskItem(title, type) {
   span.classList.add("task-type");
   span.classList.add(spanType);
   button.classList.add("task__button--remove-task");
-  p.innerText = `${title}`
+  p.innerText = `${task.title}`
   listItem.appendChild(div)
   listItem.appendChild(button)
   div.appendChild(span)
@@ -57,7 +57,7 @@ function renderElements(array) {
   }
   const tasksList = document.getElementsByClassName("tasks__list")[0];
   for (let i = 0; i < tasks.length; i++) {
-    listItem = createTaskItem(tasks[i].title, tasks[i].type)
+    listItem = createTaskItem(tasks[i])
     tasksList.appendChild(listItem)
   }
 }
